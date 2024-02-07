@@ -3,3 +3,5 @@ torch
 extra_streamlit_components
 opencv-python
 pillow
+pytesseract
+numpy
