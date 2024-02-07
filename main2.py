@@ -6,7 +6,7 @@ from evaluate import eval_preds
 import extra_streamlit_components as stx
 from utils import *
 from PIL import Image
-import cv2
+# import cv2
 
 def f(context,num_questions,question_type):
     submit = st.button('Submit',key = f"submit_text_button{question_type}")
@@ -161,59 +161,53 @@ def initial_page_layout(question_type):
                         st.write(f"Your Response  **:red[{predicted_response}]**")
 
     elif TypeofInput=='Image':
-        uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
-        if uploaded_file is not None:
-            image = Image.open(uploaded_file)
-            # context = text_detection(image)
-            # if context=="No Text Detected":
-            #     st.warning('This image has no text. Please paste some other image', icon="⚠️")
-            #     st.image(image)
-            # else:
-            #     f(context,num_questions,question_type)
+        # u
+        pass
 
 
     elif TypeofInput=='Video':
-        temp_video = st.file_uploader("Temp", type=["mp4", "avi", "mov"], key="temp")
+        # temp_video = st.file_uploader("Temp", type=["mp4", "avi", "mov"], key="temp")
 
-        if temp_video is not None:
-            with open(temp_video.name, "wb") as temp_file:
-                temp_file.write(temp_video.getvalue())
+        # if temp_video is not None:
+        #     with open(temp_video.name, "wb") as temp_file:
+        #         temp_file.write(temp_video.getvalue())
 
-            video_capture = cv2.VideoCapture(temp_video.name)
-            fps = video_capture.get(cv2.CAP_PROP_FPS)
-            duration = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT) / fps)
-            st.write(f'The Video is :green[{duration}s] and has  :green[{fps*duration}] frames')
-            st.write('Wait a moment......')
-            if duration<10:
-                # fps_to_extract =1
-                frame_interval = int(1*fps)
-            else:
-                # fps_to_extract = 0.2
-                frame_interval = int(duration//10 * fps)
-            # frame_interval = int(fps / fps_to_extract)
-            context = ''
-            for frame_number in range(0, int(duration * fps), frame_interval):
+        #     video_capture = cv2.VideoCapture(temp_video.name)
+        #     fps = video_capture.get(cv2.CAP_PROP_FPS)
+        #     duration = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT) / fps)
+        #     st.write(f'The Video is :green[{duration}s] and has  :green[{fps*duration}] frames')
+        #     st.write('Wait a moment......')
+        #     if duration<10:
+        #         # fps_to_extract =1
+        #         frame_interval = int(1*fps)
+        #     else:
+        #         # fps_to_extract = 0.2
+        #         frame_interval = int(duration//10 * fps)
+        #     # frame_interval = int(fps / fps_to_extract)
+        #     context = ''
+        #     for frame_number in range(0, int(duration * fps), frame_interval):
   
-                video_capture.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
-                ret, frame = video_capture.read()
+        #         video_capture.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
+        #         ret, frame = video_capture.read()
 
-                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        #         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-                res= text_detection(rgb_frame)
-                if res!="No Text Detected":
-                    context+=res
-                # st.image(rgb_frame, caption=f"Frame at {frame_number // fps} seconds", use_column_width=True)
+        #         res= text_detection(rgb_frame)
+        #         if res!="No Text Detected":
+        #             context+=res
+        #         # st.image(rgb_frame, caption=f"Frame at {frame_number // fps} seconds", use_column_width=True)
 
-            video_capture.release()
-            if context and len(context)>50:
-                st.write(':upside_down_face: found this text inside your video.....')
-                st.write(context)
-                f(context,num_questions,question_type)
-            elif len(context)<50:
-                st.warning('Hmm.....Not enough text.Please choose other video!!!!')
-            else:
-                st.warning(":confounded: This video doesn't have any text.Please choose other video containing text", icon="⚠️")
-                st.video(temp_video)
+        #     video_capture.release()
+        #     if context and len(context)>50:
+        #         st.write(':upside_down_face: found this text inside your video.....')
+        #         st.write(context)
+        #         f(context,num_questions,question_type)
+        #     elif len(context)<50:
+        #         st.warning('Hmm.....Not enough text.Please choose other video!!!!')
+        #     else:
+        #         st.warning(":confounded: This video doesn't have any text.Please choose other video containing text", icon="⚠️")
+        #         st.video(temp_video)
+        pass
     else:
         pass       
                 
