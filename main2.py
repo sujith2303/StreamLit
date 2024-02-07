@@ -164,12 +164,12 @@ def initial_page_layout(question_type):
         uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
         if uploaded_file is not None:
             image = Image.open(uploaded_file)
-            context = text_detection(image)
-            if context=="No Text Detected":
-                st.warning('This image has no text. Please paste some other image', icon="⚠️")
-                st.image(image)
-            else:
-                f(context,num_questions,question_type)
+            # context = text_detection(image)
+            # if context=="No Text Detected":
+            #     st.warning('This image has no text. Please paste some other image', icon="⚠️")
+            #     st.image(image)
+            # else:
+            #     f(context,num_questions,question_type)
 
 
     elif TypeofInput=='Video':
