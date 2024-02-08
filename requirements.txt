@@ -1,7 +1,7 @@
 transformers 
 torch
 extra_streamlit_components
-opencv-python
+opencv-python-headless
 pillow
 pytesseract
 numpy
